@@ -62,7 +62,7 @@ app.post('/dialogflowFirebaseFulfillment', function (req, res) {
 		const device = agent.parameters.device;
 		const command = agent.parameters.command;
 
-		var url = 'https://10.48.27.2:9182/vnms/dashboard/appliance/' + device + '/live?command=' + command;
+		var url = 'https://207.47.61.70:9182/vnms/dashboard/appliance/' + device + '/live?command=' + command;
     	// var liveresp = syncRequest('GET', url);
 		var liveresp = syncRequest('GET', url, {
 			headers: {
