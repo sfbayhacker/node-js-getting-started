@@ -42,11 +42,15 @@ var app = express();
 
 process.env.DEBUG = 'dialogflow:debug'; // enables lib debugging statements
  
+app.get('/', function (req, res) {
+  res.send('Welcome to qos-bot API host!');
+})
+
 app.post('/dialogflowFirebaseFulfillment', function (req, res) {
 
-	const agent = new WebhookClient({ request, response });
-	console.log('Dialogflow Request headers: ' + JSON.stringify(request.headers));
-	console.log('Dialogflow Request body: ' + JSON.stringify(request.body));
+	const agent = new WebhookClient({ req, res });
+	console.log('Dialogflow Request headers: ' + JSON.stringify(req.headers));
+	console.log('Dialogflow Request body: ' + JSON.stringify(req.body));
 
 	function livestatus(agent) {
 	  const device = agent.parameters.device;
@@ -56,11 +60,11 @@ app.post('/dialogflowFirebaseFulfillment', function (req, res) {
 
     function trivia(agent){
       console.log("1");
-    	var request = require('sync-request');
+    	var trivia_req = require('sync-request');
       console.log("2");
-    	var out = request('GET', 'http://numbersapi.com/random/trivia');
+    	var trivia_res = trivia_req('GET', 'http://numbersapi.com/random/trivia');
       console.log("3");
-    	agent.add(out.body.toString('utf-8'));
+    	agent.add(trivia_res.body.toString('utf-8'));
     }
 
 	let intentMap = new Map();
