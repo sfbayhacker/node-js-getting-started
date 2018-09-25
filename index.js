@@ -14,8 +14,8 @@ app.get('/live/:device/:command', function (req, res) {
 
 app.get('/trivia', function (req, res) {
 	var request = require('sync-request');
-	var trivia = request('GET', 'http://numbersapi.com/random/trivia');
-	res.send(trivia)
+	var out = request('GET', 'http://numbersapi.com/random/trivia');
+	res.send(out.body.toString('utf-8'))
 })
 
 app.listen(port, () => console.log(`qos-bot-api app listening on port ${port}!`))
