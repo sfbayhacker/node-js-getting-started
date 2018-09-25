@@ -1,32 +1,57 @@
+// {
+//   "name": "node-js-getting-started",
+//   "version": "0.3.0",
+//   "description": "A sample Node.js app using Express 4",
+//   "engines": {
+//     "node": "8.9.1"
+//   },
+//   "main": "index.js",
+//   "scripts": {
+//     "start": "node index.js",
+//     "test": "node test.js"
+//   },
+//   "dependencies": {
+//     "ejs": "^2.5.6",
+//     "express": "^4.15.2",
+//     "sync-request": "*"
+//   },
+//   "devDependencies": {
+//     "request": "^2.81.0",
+//     "tape": "^4.7.0"
+//   },
+//   "repository": {
+//     "type": "git",
+//     "url": "https://github.com/heroku/node-js-getting-started"
+//   },
+//   "keywords": [
+//     "node",
+//     "heroku",
+//     "express"
+//   ],
+//   "license": "MIT"
+// }
+
 {
-  "name": "node-js-getting-started",
-  "version": "0.3.0",
-  "description": "A sample Node.js app using Express 4",
+  "name": "dialogflowFirebaseFulfillment",
+  "description": "This is the default fulfillment for a Dialogflow agents using Cloud Functions for Firebase",
+  "version": "0.0.1",
+  "private": true,
+  "license": "Apache Version 2.0",
+  "author": "Google Inc.",
   "engines": {
-    "node": "8.9.1"
+    "node": "8"
   },
-  "main": "index.js",
   "scripts": {
-    "start": "node index.js",
-    "test": "node test.js"
+    "start": "firebase serve --only functions:dialogflowFirebaseFulfillment",
+    "deploy": "firebase deploy --only functions:dialogflowFirebaseFulfillment"
   },
   "dependencies": {
-    "ejs": "^2.5.6",
+    "actions-on-google": "^2.2.0",
+    "firebase-admin": "^5.13.1",
+    "firebase-functions": "^2.0.2",
+    "dialogflow": "^0.6.0",
+    "dialogflow-fulfillment": "^0.5.0",
     "express": "^4.15.2",
     "sync-request": "*"
-  },
-  "devDependencies": {
-    "request": "^2.81.0",
-    "tape": "^4.7.0"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/heroku/node-js-getting-started"
-  },
-  "keywords": [
-    "node",
-    "heroku",
-    "express"
-  ],
-  "license": "MIT"
+  }
 }
