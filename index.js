@@ -62,7 +62,7 @@ app.post('/dialogflowFirebaseFulfillment', function (req, res) {
 		const device = agent.parameters.device;
 		const command = agent.parameters.command;
 		//var url = '/live/' + device + '?command=' + command;
-    	var liveresp = syncRequest('GET', '/live/dummy');
+    	var liveresp = syncRequest('GET', 'http://hidden-journey-54343.herokuapp.com/live/dummy');
     	var jsonStr = liveresp.body.toString('utf-8');
     	var json = JSON.parse(json);
     	agent.add(json.collection["system:uptime"]["svcuptime"]);
