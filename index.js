@@ -19,6 +19,28 @@ app.get('/', function (req, res) {
 	res.send('Welcome to qos-bot API host!');
 })
 
+app.get('/live/dummy', function (req, res) {
+	var payload = '{\
+					    "collection": {\
+						        "system:uptime": [\
+						            {\
+						                "starttime": "Fri Sep  7 10:50:07 2018",\
+						                "svcuptime": "17 days, 12 hours, 10 minutes, 8 seconds",\
+						                "date-time": "Mon Sep 24 23:00:09 2018",\
+						                "svcuptime-msec": 1512608,\
+						                "timezone": "America/Los_Angeles (PDT, --700)"\
+						            }\
+						        ]\
+						    }\
+						}';
+	res.send(payload);
+})
+
+app.get('/live/:device', function (req, res) {
+	var command = req.query.command;
+	res.send('Sorry, not implemented yet!');
+})
+
 app.post('/dialogflowFirebaseFulfillment', function (req, res) {
 
 	// console.log('request = ' + req);
@@ -39,8 +61,11 @@ app.post('/dialogflowFirebaseFulfillment', function (req, res) {
 	function livestatus() {
 		const device = agent.parameters.device;
 		const command = agent.parameters.command;
-    	var trivia_res = syncRequest('GET', 'http://numbersapi.com/random/trivia');
-    	agent.add(trivia_res.body.toString('utf-8'));
+		//var url = '/live/' + device + '?command=' + command;
+    	var liveresp = syncRequest('GET', '/live/dummy');
+    	var jsonStr = liveresp.body.toString('utf-8');
+    	var json = JSON.parse(json);
+    	agent.add(json.collection["system:uptime"]["svcuptime"]);
 	}
 
     function trivia(agent){
