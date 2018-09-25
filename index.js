@@ -26,7 +26,7 @@ app.get('/trivia', function (req, res) {
   res.send('5600 is the number of metres above sea level of the highest bridge in the world, located in the Himalayan mountains.')
 })
 
-
+app.listen(PORT, () => console.log(`qos-bot-api app listening on port ${port}!`))
 
 // express()
 //   .use(express.static(path.join(__dirname, 'public')))
