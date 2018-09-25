@@ -74,7 +74,7 @@ app.post('/dialogflowFirebaseFulfillment', function (req, res) {
     }
 
 	let intentMap = new Map();
-	intentMap.set('live status', random);
+	intentMap.set('live status', livestatus);
 	intentMap.set('trivia', trivia);
 	agent.handleRequest(intentMap);
 })
