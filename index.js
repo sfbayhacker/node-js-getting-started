@@ -61,9 +61,36 @@ app.post('/dialogflowFirebaseFulfillment', function (req, res) {
 	function livestatus() {
 		const device = agent.parameters.device;
 		const command = agent.parameters.command;
-		//var url = '/live/' + device + '?command=' + command;
-    	var liveresp = syncRequest('GET', 'https://hidden-journey-54343.herokuapp.com/live/dummy');
+
+		if (command === 'uptime') {
+			command = 'system/uptime'
+		} else {
+			agent.add('I am sorry, I dont understand the command - ' + command);
+			return;
+		}
+
+		var url = 'https://10.48.27.2:9182/vnms/dashboard/appliance/' + device + '/live?command=' + command;
+    	// var liveresp = syncRequest('GET', url);
+		var res = syncRequest('GET', url, {
+			headers: {
+				'Authorization': 'Basic QWRtaW5pc3RyYXRvcjpWZXJzYUAxMjM=',
+				'Accept': 'application/json'
+			},
+		});
     	var jsonStr = liveresp.body.toString('utf-8');
+		// var jsonStr = `{
+		// 			    "collection": {
+		// 				        "system:uptime": [
+		// 				            {
+		// 				                "starttime": "Fri Sep  7 10:50:07 2018",
+		// 				                "svcuptime": "17 days, 12 hours, 10 minutes, 8 seconds",
+		// 				                "date-time": "Mon Sep 24 23:00:09 2018",
+		// 				                "svcuptime-msec": "1512608",
+		// 				                "timezone": "America/Los_Angeles (PDT, --700)"
+		// 				            }
+		// 				        ]
+		// 				    }
+		// 				}`;
     	var result = JSON.parse(jsonStr);
     	console.log('uptime = ' + result.collection["system:uptime"][0]["svcuptime"]);
     	agent.add(result.collection["system:uptime"][0]["svcuptime"]);
