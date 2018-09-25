@@ -64,19 +64,8 @@ app.post('/dialogflowFirebaseFulfillment', function (req, res) {
 		//var url = '/live/' + device + '?command=' + command;
     	// var liveresp = syncRequest('GET', url);
     	// var jsonStr = liveresp.body.toString('utf-8');
-		var jsonStr = '{\
-					    "collection": {\
-						        "system:uptime": [\
-						            {\
-						                "starttime": "Fri Sep  7 10:50:07 2018",\
-						                "svcuptime": "17 days, 12 hours, 10 minutes, 8 seconds",\
-						                "date-time": "Mon Sep 24 23:00:09 2018",\
-						                "svcuptime-msec": 1512608,\
-						                "timezone": "America/Los_Angeles (PDT, --700)"\
-						            }\
-						        ]\
-						    }\
-						}';
+		var jsonStr = '{"collection": {"system:uptime": [{"starttime": "Fri Sep  7 10:50:07 2018","svcuptime": "17 days, 12 hours, 10 minutes, 8 seconds","date-time": "Mon Sep 24 23:00:09 2018",'+
+						                +'"svcuptime-msec": 1512608,"timezone": "America/Los_Angeles (PDT, --700)"}]}}';
     	console.log(jsonStr);
     	var result = JSON.parse(jsonStr);
     	console.log('uptime = ' + result.collection["system:uptime"]["svcuptime"]);
