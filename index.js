@@ -48,7 +48,7 @@ app.get('/', function (req, res) {
 
 app.post('/dialogflowFirebaseFulfillment', function (req, res) {
 
-	// console.log(req);
+	console.log('request = ' + req);
 	// console.log(JSON.stringify(req.body));
 	const agent = new WebhookClient({
 	  request: req,
