@@ -62,13 +62,6 @@ app.post('/dialogflowFirebaseFulfillment', function (req, res) {
 		const device = agent.parameters.device;
 		const command = agent.parameters.command;
 
-		if (command === 'uptime') {
-			command = 'system/uptime'
-		} else {
-			agent.add('I am sorry, I dont understand the command - ' + command);
-			return;
-		}
-
 		var url = 'https://10.48.27.2:9182/vnms/dashboard/appliance/' + device + '/live?command=' + command;
     	// var liveresp = syncRequest('GET', url);
 		var res = syncRequest('GET', url, {
