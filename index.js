@@ -37,7 +37,6 @@ const {Card, Suggestion} = require('dialogflow-fulfillment');
 const express = require('express');
 const path = require('path');
 const port = process.env.PORT || 5000;
-const CircularJSON = require('circular-json');
 
 var app = express();
 
@@ -50,7 +49,6 @@ app.get('/', function (req, res) {
 app.post('/dialogflowFirebaseFulfillment', function (req, res) {
 
 	console.log('request = ' + req);
-	console.log(CircularJSON.stringify(req));
 	const agent = new WebhookClient({
 	  request: req,
 	  response: res
