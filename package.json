@@ -12,8 +12,8 @@
   },
   "dependencies": {
     "ejs": "^2.5.6",
-    "express": "^4.15.2"
-    "sync-request"
+    "express": "^4.15.2",
+    "sync-request": "*"
   },
   "devDependencies": {
     "request": "^2.81.0",
