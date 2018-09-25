@@ -14,10 +14,30 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
 process.env.DEBUG = 'dialogflow:debug'; // enables lib debugging statements
- 
+process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
+
 app.get('/', function (req, res) {
 	res.send('Welcome to qos-bot API host!');
 })
+
+app.get('/live/test', function (req, res) {
+	var device = 'Branch1';
+	var command = 'system/uptime'; 
+	var url = 'https://10.48.27.2:9182/vnms/dashboard/appliance/' + device + '/live?command=' + command;
+	// var liveresp = syncRequest('GET', url);
+	var liveresp = syncRequest('GET', url, {
+		headers: {
+			'Authorization': 'Basic QWRtaW5pc3RyYXRvcjpWZXJzYUAxMjM=',
+			'Accept': 'application/json'
+		},
+	});
+	var jsonStr = liveresp.body.toString('utf-8');
+	var result = JSON.parse(jsonStr);
+	console.log('uptime = ' + result.collection["system:uptime"][0]["svcuptime"]);
+	res.send(result.collection["system:uptime"][0]["svcuptime"]);
+})
+
+
 
 app.get('/live/dummy', function (req, res) {
 	var payload = '{\
