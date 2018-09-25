@@ -64,7 +64,7 @@ app.post('/dialogflowFirebaseFulfillment', function (req, res) {
 
 		var url = 'https://10.48.27.2:9182/vnms/dashboard/appliance/' + device + '/live?command=' + command;
     	// var liveresp = syncRequest('GET', url);
-		var res = syncRequest('GET', url, {
+		var liveresp = syncRequest('GET', url, {
 			headers: {
 				'Authorization': 'Basic QWRtaW5pc3RyYXRvcjpWZXJzYUAxMjM=',
 				'Accept': 'application/json'
