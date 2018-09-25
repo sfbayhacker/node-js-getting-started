@@ -1,6 +1,6 @@
 const express = require('express')
 const path = require('path')
-const PORT = process.env.PORT || 5000
+const port = process.env.PORT || 5000
 
 var app = express()
 
@@ -23,10 +23,10 @@ app.get('/trivia', function (req, res) {
 		return "Sorry, unable to play trivia right now!";
 	}
 
-  res.send('5600 is the number of metres above sea level of the highest bridge in the world, located in the Himalayan mountains.')
+	// res.send('5600 is the number of metres above sea level of the highest bridge in the world, located in the Himalayan mountains.')
 })
 
-app.listen(PORT, () => console.log(`qos-bot-api app listening on port ${port}!`))
+app.listen(port, () => console.log(`qos-bot-api app listening on port ${port}!`))
 
 // express()
 //   .use(express.static(path.join(__dirname, 'public')))
