@@ -78,8 +78,9 @@ app.post('/dialogflowFirebaseFulfillment', function (req, res) {
 						    }\
 						}';
     	console.log(jsonStr);
-    	var json = JSON.parse(jsonStr);
-    	agent.add(json.collection["system:uptime"]["svcuptime"]);
+    	var result = JSON.parse(jsonStr);
+    	console.log('uptime = ' + result.collection["system:uptime"]["svcuptime"]);
+    	agent.add(result.collection["system:uptime"]["svcuptime"]);
 	}
 
     function trivia(agent){
