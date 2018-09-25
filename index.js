@@ -48,10 +48,14 @@ app.get('/', function (req, res) {
 
 app.post('/dialogflowFirebaseFulfillment', function (req, res) {
 
-	console.log(JSON.stringify(req.body));
-	const agent = new WebhookClient({ req, res });
-	console.log('Dialogflow Request headers: ' + JSON.stringify(req.headers));
-	console.log('Dialogflow Request body: ' + JSON.stringify(req.body));
+	// console.log(req);
+	// console.log(JSON.stringify(req.body));
+	const agent = new WebhookClient({
+	  request: req,
+	  response: res
+	});
+	// console.log('Dialogflow Request headers: ' + JSON.stringify(req.headers));
+	// console.log('Dialogflow Request body: ' + JSON.stringify(req.body));
 
 	function livestatus(agent) {
 	  const device = agent.parameters.device;
