@@ -1,18 +1,22 @@
 {
-  "name": "qos-bot-api",
+  "name": "dialogflowFirebaseFulfillment",
+  "description": "This is the default fulfillment for a Dialogflow agents using Cloud Functions for Firebase",
   "version": "0.0.1",
-  "description": "Test Agent webhook",
-  "author": "Abhinav Tyagi, New Delhi, India",
+  "private": true,
+  "license": "Apache Version 2.0",
+  "author": "Google Inc.",
   "engines": {
     "node": "8"
   },
   "scripts": {
-    "start": "node server.js"
+    "start": "node index.js"
   },
   "dependencies": {
-    "dialogflow-fulfillment": "^0.4.1",
-    "body-parser": "^1.18.3",
-    "express": "^4.16.3",
-    "actions-on-google": "^2.2.0"
+    "actions-on-google": "^2.2.0",
+    "dialogflow": "^0.6.0",
+    "dialogflow-fulfillment": "^0.5.0",
+    "express": "^4.15.2",
+    "sync-request": "*",
+    "body-parser": "^1.18.3"
   }
 }
