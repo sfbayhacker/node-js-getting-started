@@ -13,15 +13,20 @@ app.get('/live/:device/:command', function (req, res) {
 })
 
 app.get('/trivia', function (req, res) {
-	var request = new XMLHttpRequest();
-	request.open('GET', 'http://numbersapi.com/random/trivia', false);  // `false` makes the request synchronous
-	request.send(null);
+	// var request = new XMLHttpRequest();
+	// request.open('GET', 'http://numbersapi.com/random/trivia', false);  // `false` makes the request synchronous
+	// request.send(null);
 
-	if (request.status === 200) {
-	  	return request.responseText;
-	} else {
-		return "Sorry, unable to play trivia right now!";
-	}
+	// if (request.status === 200) {
+	//   	return request.responseText;
+	// } else {
+	// 	return "Sorry, unable to play trivia right now!";
+	// }
+
+  	return new (require('httpclient').HttpClient)({
+	    method: 'GET',
+	      url: 'http://numbersapi.com/random/trivia'
+	    }).finish().body.read().decodeToString();
 
 	// res.send('5600 is the number of metres above sea level of the highest bridge in the world, located in the Himalayan mountains.')
 })
